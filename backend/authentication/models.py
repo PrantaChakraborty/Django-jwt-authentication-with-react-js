@@ -7,4 +7,4 @@ from django.db import models
 
 
 class CustomUser(AbstractUser):
-    age = models.PositiveIntegerField(blank=False, null=False,  max_length=3)
+    age = models.PositiveIntegerField(blank=True,null=True, max_length=20)
