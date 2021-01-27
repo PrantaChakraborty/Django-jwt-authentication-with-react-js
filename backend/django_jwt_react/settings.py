@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 # rest_framework permission
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.isAuthenticated',
+        'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -66,7 +66,7 @@ SIMPLE_JWT = {
     'AUTH_HEADERS_TYPES': ('JWT',),
     'USER_ID_FIELDS': 'id',
     'USER_ID_CLAIM': 'user_id',
-    'AUTH_TOKEN_CLASS': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
 
