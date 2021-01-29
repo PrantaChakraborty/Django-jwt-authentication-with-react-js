@@ -3,8 +3,15 @@ import { useState } from "react"
 const Logout = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const onSubmit = (e) => {
+        e.preventDefault()
+        if (!username) {
+            alert("Please type user name")
+            return
+        }
+    }
     return (
-        <form className="login-form">
+        <form className="login-form" onSubmit={onSubmit}>
             <div className="form-control">
                 <label>Username</label>
                 <input
