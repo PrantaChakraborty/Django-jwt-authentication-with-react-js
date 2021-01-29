@@ -1,40 +1,54 @@
-import { useState } from "react"
-
-const Logout = () => {
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const onSubmit = (e) => {
-        e.preventDefault()
-        if (!username) {
-            alert("Please type user name")
-            return
+import React, { Component } from "react"
+import { axiosInstance } from "../AxiosApi"
+export default class Login extends Component {
+    constructor() {
+        super()
+        this.state = {
+            username: "",
+            password: ""
         }
     }
-    return (
-        <form className="login-form" onSubmit={onSubmit}>
-            <div className="form-control">
-                <label>Username</label>
-                <input
-                    type="text"
-                    placeholder="User Name"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-            </div>
-            <div className="form-control">
-                <label>Password</label>
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-            </div>
-            <button type="submit" className="btn-login">
-                Login
-            </button>
-        </form>
-    )
-}
+    handleChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+    handleSubmit = async (event) => {
+        event.preventDefault()
+        try {
+            const response = await axiosInstance.post("token/obtain/", {
+                username: this.state.username,
+                password: this.state.password
+            })
+            axiosInstance.defaults.headers["Authorization"] =
+                "JWT " + response.data.access
+            localStorage.setItem("access_token", response.data.access)
+            localStorage.setItem("refresh_item", response.data.refresh)
+            //return response.data
+        } catch (error) {
+            throw error
+        }
+    }
+    render() {
+        return (
+            <form className="login-form" onSubmit={this.handleSubmit}>
+                <div className="form-control">
+                    <input
+                        name="username"
+                        type="text"
+                        value={this.state.username}
+                        onChange={this.handleChange}
+                        placeholder="User Name"
+                    />
 
-export default Logout
+                    <input
+                        name="password"
+                        type="password"
+                        value={this.state.password}
+                        onChange={this.handleChange}
+                        placeholder="Password"
+                    />
+                    <input className="btn-login" type="submit" value="Login" />
+                </div>
+            </form>
+        )
+    }
+}

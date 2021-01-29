@@ -7,6 +7,16 @@ import Signup from "./components/Signup"
 import Logout from "./components/Logout"
 
 export default class App extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            username: props.username,
+            password: props.password
+        }
+    }
+    handleLogin = () => {
+        console.log(this.state.username)
+    }
     render() {
         return (
             <div className="container">
@@ -17,7 +27,7 @@ export default class App extends Component {
                             <Home />
                         </Route>
                         <Route path="/login">
-                            <Login />
+                            <Login onLogin={this.handleLogin} />
                         </Route>
                         <Route path="/signup">
                             <Signup />

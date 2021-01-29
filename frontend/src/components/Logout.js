@@ -1,11 +1,11 @@
-import React from "react"
+import React, { Component } from "react"
 
-const Logout = () => {
-    return (
-        <div>
-            <h3>Logout</h3>
-        </div>
-    )
+export default class Logout extends Component {
+    render() {
+        return (
+            <div>
+                <h3>Logout</h3>
+            </div>
+        )
+    }
 }
-
-export default Logout
