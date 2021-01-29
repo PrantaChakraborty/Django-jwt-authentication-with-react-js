@@ -11,18 +11,19 @@ export default class Login extends Component {
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
+    // must need to add async and
     handleSubmit = async (event) => {
         event.preventDefault()
         try {
-            const response = await axiosInstance.post("token/obtain/", {
+            const data = await axiosInstance.post("token/obtain/", {
                 username: this.state.username,
                 password: this.state.password
             })
             axiosInstance.defaults.headers["Authorization"] =
-                "JWT " + response.data.access
-            localStorage.setItem("access_token", response.data.access)
-            localStorage.setItem("refresh_item", response.data.refresh)
-            //return response.data
+                "JWT " + data.access
+            localStorage.setItem("access_token", data.access)
+            localStorage.setItem("refresh_item", data.refresh)
+            return data
         } catch (error) {
             throw error
         }
