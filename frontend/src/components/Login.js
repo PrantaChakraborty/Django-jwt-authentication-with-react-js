@@ -1,7 +1,8 @@
 import { useState } from "react"
 
 const Logout = () => {
-    const [loginData, setLoginData] = useState({ username: "", password: "" })
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
     return (
         <form className="login-form">
             <div className="form-control">
@@ -9,8 +10,8 @@ const Logout = () => {
                 <input
                     type="text"
                     placeholder="User Name"
-                    value={loginData.username}
-                    onChange={(e) => setLoginData.username(e.target.value)}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                 />
             </div>
             <div className="form-control">
@@ -18,8 +19,8 @@ const Logout = () => {
                 <input
                     type="password"
                     placeholder="Password"
-                    value={loginData.password}
-                    onChange={(e) => setLoginData.password(e.target.value)}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
             <button type="submit" className="btn-login">
