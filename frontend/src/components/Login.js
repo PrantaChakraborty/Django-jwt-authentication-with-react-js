@@ -1,16 +1,19 @@
 import React, { Component } from "react"
+import { Redirect } from "react-router-dom"
 import { axiosInstance } from "../AxiosApi"
 export default class Login extends Component {
     constructor() {
         super()
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            redirect: false
         }
     }
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
+
     // must need to add async and
     handleSubmit = async (event) => {
         event.preventDefault()
@@ -23,10 +26,17 @@ export default class Login extends Component {
                 "JWT " + response.data.access
             localStorage.setItem("access_token", response.data.access)
             localStorage.setItem("refresh_token", response.data.refresh)
-            console.log("login: ", response.data)
+            // console.log("login: ", response.data.access)
+            this.setState({ redirect: true })
             return response.data
         } catch (error) {
             throw error
+        }
+    }
+    // for redirect to home page after successfull login
+    rederRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to="/" />
         }
     }
     render() {
@@ -49,6 +59,7 @@ export default class Login extends Component {
                         onChange={this.handleChange}
                         placeholder="Password"
                     />
+                    {this.rederRedirect()}
                     <input className="btn-login" type="submit" value="Login" />
                 </div>
             </form>
