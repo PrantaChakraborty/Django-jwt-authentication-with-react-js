@@ -14,9 +14,6 @@ export default class App extends Component {
             password: props.password
         }
     }
-    handleLogin = () => {
-        console.log(this.state.username)
-    }
     render() {
         return (
             <div className="container">
@@ -27,7 +24,7 @@ export default class App extends Component {
                             <Home />
                         </Route>
                         <Route path="/login">
-                            <Login onLogin={this.handleLogin} />
+                            <Login />
                         </Route>
                         <Route path="/signup">
                             <Signup />
