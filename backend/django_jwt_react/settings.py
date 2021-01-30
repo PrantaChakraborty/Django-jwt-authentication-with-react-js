@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # local
     'authentication.apps.AuthenticationConfig',
+    'about.apps.AboutConfig',
 ]
 
 # rest_framework permission
