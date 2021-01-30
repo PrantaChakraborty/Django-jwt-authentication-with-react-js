@@ -33,6 +33,7 @@ export default class Login extends Component {
         return (
             <form className="login-form" onSubmit={this.handleSubmit}>
                 <div className="form-control">
+                    <lable /> User Name
                     <input
                         name="username"
                         type="text"
@@ -40,7 +41,7 @@ export default class Login extends Component {
                         onChange={this.handleChange}
                         placeholder="User Name"
                     />
-
+                    <lable /> Password
                     <input
                         name="password"
                         type="password"
