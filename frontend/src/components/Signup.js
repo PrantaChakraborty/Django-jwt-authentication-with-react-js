@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import React, { Component } from "react"
 import { axiosInstance } from "../AxiosApi"
 
 export default class Signup extends Component {
@@ -8,7 +9,8 @@ export default class Signup extends Component {
             username: "",
             email: "",
             age: "",
-            password: ""
+            password: "",
+            redirect: false
         }
     }
 
@@ -24,12 +26,18 @@ export default class Signup extends Component {
                 age: this.state.age,
                 password: this.state.password
             })
+            this.setState({ redirect: true })
             return response
         } catch (error) {
             console.log(error.stack)
             this.setState({
                 errors: error.response.data
             })
+        }
+    }
+    rederRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to="/login" />
         }
     }
     render() {
@@ -93,6 +101,7 @@ export default class Signup extends Component {
                             : null} */}
                     </label>
                 </div>
+                {this.rederRedirect()}
                 <button type="submit" className="btn-login">
                     Sign Up
                 </button>
