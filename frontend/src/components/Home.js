@@ -5,18 +5,18 @@ export default class Home extends Component {
     constructor() {
         super()
         this.state = {
-            message: ""
+            aboutData: []
         }
     }
     getMessage = async () => {
         try {
-            let response = await axiosInstance.get("/hello/")
-            const fetchMessage = response.data.hello
+            let response = await axiosInstance.get("v1/about/")
+            const fetchData = response.data
             this.setState({
-                message: fetchMessage
+                aboutData: fetchData
             })
-            console.log(fetchMessage)
-            return fetchMessage
+            console.log(fetchData)
+            return fetchData
         } catch (error) {
             console.log("Error: ", JSON.stringify(error, null, 4))
             throw error
@@ -30,7 +30,14 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-                <p>{this.state.message}</p>
+                {this.state.aboutData.map((item) => (
+                    <div key={item.id}>
+                        <h2>Name: {item.name}</h2>
+                        <p>Address: {item.address}</p>
+                        <p>Phone Number: {item.phone_no}</p>
+                        <br></br>
+                    </div>
+                ))}
             </div>
         )
     }
