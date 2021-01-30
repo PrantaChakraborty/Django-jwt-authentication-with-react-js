@@ -15,6 +15,7 @@ class ObtainTokenPairWithAgeView(TokenObtainPairView):
 # custom user create
 class CustomUserCreate(APIView):
     permission_classes = (permissions.AllowAny,)
+    authentication_classes = ()
 
     def post(self, request, format='json'):
         serializer = CustomUserSerializer(data=request.data)
