@@ -23,6 +23,7 @@ export default class Login extends Component {
                 "JWT " + data.access
             localStorage.setItem("access_token", data.access)
             localStorage.setItem("refresh_item", data.refresh)
+            console.log("logged in")
             return data
         } catch (error) {
             throw error
