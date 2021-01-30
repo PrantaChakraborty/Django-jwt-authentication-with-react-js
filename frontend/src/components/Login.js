@@ -15,16 +15,16 @@ export default class Login extends Component {
     handleSubmit = async (event) => {
         event.preventDefault()
         try {
-            const data = await axiosInstance.post("token/obtain/", {
+            const response = await axiosInstance.post("token/obtain/", {
                 username: this.state.username,
                 password: this.state.password
             })
             axiosInstance.defaults.headers["Authorization"] =
-                "JWT " + data.access
-            localStorage.setItem("access_token", data.access)
-            localStorage.setItem("refresh_item", data.refresh)
-            console.log("logged in")
-            return data
+                "JWT " + response.data.access
+            localStorage.setItem("access_token", response.data.access)
+            localStorage.setItem("refresh_token", response.data.refresh)
+            console.log("login: ", response.data)
+            return response.data
         } catch (error) {
             throw error
         }
@@ -33,7 +33,7 @@ export default class Login extends Component {
         return (
             <form className="login-form" onSubmit={this.handleSubmit}>
                 <div className="form-control">
-                    <lable /> User Name
+                    <label>User Name</label>
                     <input
                         name="username"
                         type="text"
@@ -41,7 +41,7 @@ export default class Login extends Component {
                         onChange={this.handleChange}
                         placeholder="User Name"
                     />
-                    <lable /> Password
+                    <label>Password</label>
                     <input
                         name="password"
                         type="password"

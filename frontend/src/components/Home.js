@@ -8,7 +8,7 @@ export default class Home extends Component {
             aboutData: []
         }
     }
-    getMessage = async () => {
+    getData = async () => {
         try {
             let response = await axiosInstance.get("v1/about/")
             this.setState({
@@ -22,7 +22,7 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        this.getMessage()
+        this.getData()
     }
     render() {
         return (
