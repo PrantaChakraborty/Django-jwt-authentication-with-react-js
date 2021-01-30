@@ -25,8 +25,3 @@ class CustomUserCreate(APIView):
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-class HelloWorld(APIView):
-    permission_classes = (permissions.AllowAny,)
-    def get(self, request):
-        return Response(data={"Message": "Hello World"}, status=status.HTTP_200_OK)
