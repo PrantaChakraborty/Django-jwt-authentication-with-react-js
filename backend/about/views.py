@@ -7,7 +7,7 @@ from .serializers import AboutSerializers
 
 
 @api_view(['GET'])
-@permission_classes(permissions.AllowAny)
+@permission_classes([permissions.AllowAny])
 def about_view(request):
     about = About.objects.all()
     serializer = AboutSerializers(about, many=True)
