@@ -9,7 +9,6 @@ from .serializers import MyTokenObtainPairSerializer, CustomUserSerializer
 
 # view 'age' field with user details in token
 class ObtainTokenPairWithAgeView(TokenObtainPairView):
-    permission_classes = (permissions.AllowAny,)
     serializer_class = MyTokenObtainPairSerializer
 
 
