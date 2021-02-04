@@ -1,6 +1,6 @@
 import React, { Component } from "react"
-import React, { Component } from "react"
-import { axiosInstance } from "../AxiosApi"
+import axiosInstance from "../AxiosApi"
+import { Redirect } from "react-router-dom"
 
 export default class Signup extends Component {
     constructor() {

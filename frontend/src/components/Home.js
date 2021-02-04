@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { axiosInstance } from "../AxiosApi"
+import axiosInstance from "../AxiosApi"
 
 export default class Home extends Component {
     constructor() {
@@ -10,7 +10,7 @@ export default class Home extends Component {
     }
     getData = async () => {
         try {
-            let response = await axiosInstance.get("v1/about/")
+            const response = await axiosInstance.get("/v1/about/")
             this.setState({
                 aboutData: response.data
             })
@@ -22,14 +22,15 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        this.getData()
+        const data = this.getData()
+        console.log(data)
     }
     render() {
         return (
             <div>
                 {this.state.aboutData.map((item) => (
-                    <div>
-                        <h2 key={item.id}>Name: {item.name}</h2>
+                    <div key={item.id}>
+                        <h2>Name: {item.name}</h2>
                         <p>Address: {item.address}</p>
                         <p>Phone Number: {item.phone_no}</p>
                         <br></br>

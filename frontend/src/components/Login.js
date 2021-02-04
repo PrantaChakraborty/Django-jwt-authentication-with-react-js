@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Redirect } from "react-router-dom"
-import { axiosInstance } from "../AxiosApi"
+import axiosInstance from "../AxiosApi"
 export default class Login extends Component {
     constructor() {
         super()
@@ -23,7 +23,7 @@ export default class Login extends Component {
                 password: this.state.password
             })
             axiosInstance.defaults.headers["Authorization"] =
-                "JWT " + response.data.access
+                "Bearer " + response.data.access
             localStorage.setItem("access_token", response.data.access)
             localStorage.setItem("refresh_token", response.data.refresh)
             // console.log("login: ", response.data.access)

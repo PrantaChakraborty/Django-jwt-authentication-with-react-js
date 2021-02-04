@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Redirect } from "react-router-dom"
-import { axiosInstance } from "../AxiosApi"
+import axiosInstance from "../AxiosApi"
 export default class Logout extends Component {
     constructor() {
         super()
